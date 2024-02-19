@@ -63,7 +63,7 @@ function insertProduct(req, res) {
 }
 
 function deleteProduct(req, res) {
-  const productId = req.body.id;
+  const productId = req.body._id;
   const productsFolderPath = './Products';
 
   try {
@@ -74,7 +74,7 @@ function deleteProduct(req, res) {
           let existingData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
           // Find the index of the product with the given id
-          const index = existingData.findIndex(product => product.id === productId);
+          const index = existingData.findIndex(product => product._id === productId);
 
           if (index !== -1) {
               // Remove the product from the array
@@ -100,35 +100,41 @@ function deleteProduct(req, res) {
 }
 
 function getProductById(req, res) {
-  const productId = req.params.id; // Extracting id from URL parameters as a string
-  const productsFolderPath = './Products';
-
-  try {
+    const productId = Number(req.params.id);
+  
+    if (isNaN(productId)) {
+      return res.status(400).json({ error: 'Invalid id parameter. Must be a number.' });
+    }
+  
+    const productsFolderPath = './Products';
+  
+    try {
       const filename = `product_Details.json`;
       const filePath = path.join(productsFolderPath, filename);
-
+  
       if (fs.existsSync(filePath)) {
-          const existingData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-
-          // Find the product with the given id
-          const product = existingData.find(product => String(product.id) === productId);
-
-          if (product) {
-              console.log('Product found:', product);
-              res.status(200).json(product);
-          } else {
-              console.error('Product with specified id does not exist.');
-              res.status(404).send('Product with specified id does not exist.');
-          }
+        const existingData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  
+        console.log('productId:', productId);
+  
+        const product = existingData.find(product => product._id === productId);
+  
+        if (product) {
+          console.log('Product found:', product);
+          res.status(200).json(product);
+        } else {
+          console.error('Product with specified id does not exist.');
+          res.status(404).send('Product with specified id does not exist.');
+        }
       } else {
-          console.error('Product file does not exist.');
-          res.status(404).send('Product file does not exist.');
+        console.error('Product file does not exist.');
+        res.status(404).send('Product file does not exist.');
       }
-  } catch (error) {
+    } catch (error) {
       console.error('Error retrieving product:', error);
       res.status(500).send('Error retrieving product.');
+    }
   }
-}
 function checkout(req, res) {
   const orderData = req.body;
   const ordersFolderPath = './Orders';
@@ -159,7 +165,7 @@ function checkout(req, res) {
   }
 }
 function cancelOrder(req, res) {
-  const orderId = req.body.orderId;
+  const orderId = req.body.order_id;
   const ordersFolderPath = './Orders';
 
   try {
@@ -170,7 +176,7 @@ function cancelOrder(req, res) {
           let existingOrders = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
           // Find the index of the order with the given orderId
-          const index = existingOrders.findIndex(order => order.orderId === orderId);
+          const index = existingOrders.findIndex(order => order.order_id === orderId);
 
           if (index !== -1) {
               // Remove the order from the array

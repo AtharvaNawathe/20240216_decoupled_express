@@ -2,7 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { createProduct, insertProduct, deleteProduct, getProductById, checkout, cancelOrder } = require('./jsonwala');
-// const { createProduct, insertProduct , deleteProduct, checkout, cancelOrder, getProductById} = require('./mongowala')
+// const { createProduct, insertProduct , deleteProduct, checkout, cancelOrder, getProductById} = require('./mongowala');
 
 const router = express.Router();
 router.use(bodyParser.json());

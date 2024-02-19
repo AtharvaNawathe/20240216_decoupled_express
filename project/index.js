@@ -1,5 +1,3 @@
-require('./testServer');
-// const mongowala = require('./mongowala');
-
-// // Connect to MongoDB
-// mongowala.connectDB();
+// require('./testServer');
+const mongowala = require('./mongowala');
+mongowala.connectDB();

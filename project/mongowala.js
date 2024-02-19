@@ -1,19 +1,23 @@
+/**
+ * Implementation of Mongodb database using mongoose library
+ * performs crud operations orders and product colletion in mongodb
+ * @author - Atharva Nawathe
+ */
+// using mongoose
 const mongoose = require("mongoose");
-
-const uri = 'mongodb+srv://root:root@cluster0.faue6rn.mongodb.net/MyData?retryWrites=true&w=majority';
-
+//getting the mongo uri from the database 
+const uri = 'mongodb+srv://root:<password>@cluster0.faue6rn.mongodb.net/MyData?retryWrites=true&w=majority';
+//mongodb connetion function
 const connectDB = async () => {
     try {
-        await mongoose.connect(uri, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
+        await mongoose.connect(uri);
         console.log('Connected to MongoDB successfully.');
     } catch (error) {
         console.error('Error connecting to MongoDB:', error);
     }
 };
 
+// defined schema in which the data will be stored
 const Product = mongoose.model('Product', {
     _id: Number,
     name: String,
@@ -25,6 +29,7 @@ const Product = mongoose.model('Product', {
     deliveryStatus: String
 });
 
+// createProduct method for creating product in MyData database
 const createProduct = async (req, res) => {
     try {
         const productData = req.body;
@@ -38,6 +43,8 @@ const createProduct = async (req, res) => {
         res.status(500).send('Error creating product in MongoDB.');
     }
 };
+
+// inserting product into MyData database
 const insertProduct = async (req, res) => {
     try {
         const productData = req.body;
@@ -120,7 +127,7 @@ const cancelOrder = async (req, res) => {
 
 const getProductById = async (req, res) => {
     try {
-        const productId = req.params.id; // Change to req.params.id to get _id from the route
+        const productId = req.params.id; 
 
         if (!productId) {
             return res.status(400).json({ error: 'Missing id parameter' });

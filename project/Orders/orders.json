@@ -1,36 +1,16 @@
 [
   {
-    "orderId": 1,
-    "customerName": "John Doe",
-    "products": [
-      {
-        "productId": 1,
-        "quantity": 2
-      },
-      {
-        "productId": 2,
-        "quantity": 1
-      }
-    ],
-    "totalAmount": 199.99,
-    "orderDate": "2022-02-20",
-    "shippingAddress": "123 Main Street, Cityville"
+    "order_id": 1234,
+    "customer_name": "Atharva",
+    "product_id": 1,
+    "quantity": 2,
+    "Total price": 5500
   },
   {
-    "orderId": 2,
-    "customerName": "John Doe",
-    "products": [
-      {
-        "productId": 1,
-        "quantity": 2
-      },
-      {
-        "productId": 2,
-        "quantity": 1
-      }
-    ],
-    "totalAmount": 199.99,
-    "orderDate": "2022-02-20",
-    "shippingAddress": "123 Main Street, Cityville"
+    "order_id": 12347,
+    "customer_name": "Atharva",
+    "product_id": 1,
+    "quantity": 2,
+    "Total price": 5500
   }
 ]

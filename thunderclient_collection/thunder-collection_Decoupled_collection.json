@@ -1,0 +1,118 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Decoupled_collection",
+    "dateExported": "2024-02-19T04:54:01.488Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "1c3faacf-f203-44c2-90bb-af7fa584d404",
+            "colId": "f9f5ab5d-35e8-43e1-be1e-e8d08bf018f6",
+            "containerId": "",
+            "name": "Delete product",
+            "url": "http://localhost:3000/deleteProduct",
+            "method": "DELETE",
+            "sortNum": 10000,
+            "created": "2024-02-18T08:13:38.129Z",
+            "modified": "2024-02-18T17:00:41.973Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"_id\": 6\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "08061a5b-c580-46d1-9f2a-ed4d6d858ada",
+            "colId": "f9f5ab5d-35e8-43e1-be1e-e8d08bf018f6",
+            "containerId": "",
+            "name": "Create product",
+            "url": "http://localhost:3000/createProduct",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-02-18T08:14:27.256Z",
+            "modified": "2024-02-18T08:15:31.318Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 1,\n  \"name\": \"Laptop\",\n  \"price\": 999.99,\n  \"brand\": \"TechMaster\",\n  \"quantity_left\": 30,\n  \"description\": \"Powerful laptop with high-performance features\",\n  \"category\": \"Computers\",\n  \"deliveryStatus\": \"pending\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "76aefb9e-d84e-4d81-bfe9-c8f545f37f16",
+            "colId": "f9f5ab5d-35e8-43e1-be1e-e8d08bf018f6",
+            "containerId": "",
+            "name": "Insert Product",
+            "url": "http://localhost:3000/insertProduct",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-02-18T08:14:38.828Z",
+            "modified": "2024-02-18T17:00:19.311Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"_id\": 6,\n  \"name\": \"Smartphone\",\n  \"price\": 699.99,\n  \"brand\": \"GadgetX\",\n  \"quantity_left\": 25,\n  \"description\": \"Latest model smartphone with advanced camera and features\",\n  \"category\": \"Mobile Devices\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "662010ff-7c26-4a67-b37a-ba49d004f702",
+            "colId": "f9f5ab5d-35e8-43e1-be1e-e8d08bf018f6",
+            "containerId": "",
+            "name": "Search Product",
+            "url": "http://localhost:3000/getProductById/2",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-02-18T13:02:18.156Z",
+            "modified": "2024-02-18T17:54:48.825Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "2a6f644f-b778-48e6-aff0-588e228e5ad0",
+            "colId": "f9f5ab5d-35e8-43e1-be1e-e8d08bf018f6",
+            "containerId": "",
+            "name": "Checkout",
+            "url": "http://localhost:3000/checkout",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-02-18T13:24:35.116Z",
+            "modified": "2024-02-18T17:24:15.593Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"order_id\": 1234,\n  \"customer_name\": \"Atharva\",\n  \"product_id\":1,\n  \"quantity\":2,\n  \"Total price\" : 5500\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "9dcf99b9-14f5-4a89-8274-d2bb2bd0f2ac",
+            "colId": "f9f5ab5d-35e8-43e1-be1e-e8d08bf018f6",
+            "containerId": "",
+            "name": "Cancel Order",
+            "url": "http://localhost:3000/cancelOrder",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2024-02-18T13:56:20.377Z",
+            "modified": "2024-02-18T17:19:18.574Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"order_id\": 1234\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
