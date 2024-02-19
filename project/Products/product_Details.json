@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1,
+    "name": "Laptop",
+    "price": 999.99,
+    "brand": "TechMaster",
+    "quantity_left": 30,
+    "description": "Powerful laptop with high-performance features",
+    "category": "Computers",
+    "deliveryStatus": "pending"
+  },
+  {
+    "id": 2,
+    "name": "Smartphone",
+    "price": 699.99,
+    "brand": "GadgetX",
+    "quantity_left": 25,
+    "description": "Latest model smartphone with advanced camera and features",
+    "category": "Mobile Devices"
+  }
+]
