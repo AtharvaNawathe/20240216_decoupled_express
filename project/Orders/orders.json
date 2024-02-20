@@ -4,13 +4,6 @@
     "customer_name": "Atharva",
     "product_id": 1,
     "quantity": 2,
-    "Total price": 5500
-  },
-  {
-    "order_id": 12347,
-    "customer_name": "Atharva",
-    "product_id": 1,
-    "quantity": 2,
-    "Total price": 5500
+    "Total_price": 5500.77
   }
 ]

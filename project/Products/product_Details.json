@@ -1,11 +1,1 @@
-[
-  {
-    "_id": 6,
-    "name": "Smartphone",
-    "price": 699.99,
-    "brand": "GadgetX",
-    "quantity_left": 25,
-    "description": "Latest model smartphone with advanced camera and features",
-    "category": "Mobile Devices"
-  }
-]
+[]

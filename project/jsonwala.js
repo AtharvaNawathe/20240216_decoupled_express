@@ -32,6 +32,8 @@ function createProduct(req, res) {
     }
 }
 
+
+
 function insertProduct(req, res) {
     const productData = req.body;
     const productsFolderPath = './Products';
@@ -135,7 +137,8 @@ function getProductById(req, res) {
       res.status(500).send('Error retrieving product.');
     }
   }
-function checkout(req, res) {
+
+function createOrder(req, res) {
   const orderData = req.body;
   const ordersFolderPath = './Orders';
 
@@ -164,6 +167,7 @@ function checkout(req, res) {
       res.status(500).send('Error creating order.');
   }
 }
+
 function cancelOrder(req, res) {
   const orderId = req.body.order_id;
   const ordersFolderPath = './Orders';
@@ -201,4 +205,93 @@ function cancelOrder(req, res) {
   }
 }
 
-module.exports = { createProduct, insertProduct, deleteProduct, getProductById, checkout, cancelOrder };
+function updateProduct(req, res) {
+    const productId = req.body._id;
+    const productsFolderPath = './Products';
+
+    try {
+        const filename = `product_Details.json`;
+        const filePath = path.join(productsFolderPath, filename);
+
+        if (fs.existsSync(filePath)) {
+            let existingData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+
+            // Find the index of the product with the given id
+            const index = existingData.findIndex(product => product._id === productId);
+
+            if (index !== -1) {
+                // Update the product data
+                existingData[index] = req.body;
+
+                // Save the updated array back to the file
+                fs.writeFileSync(filePath, JSON.stringify(existingData, null, 2), 'utf8');
+
+                console.log('Product updated successfully.');
+                res.status(200).send('Product updated successfully.');
+            } else {
+                console.error('Product with specified id does not exist.');
+                res.status(404).send('Product with specified id does not exist.');
+            }
+        } else {
+            console.error('Product file does not exist.');
+            res.status(404).send('Product file does not exist.');
+        }
+    } catch (error) {
+        console.error('Error updating product:', error);
+        res.status(500).send('Error updating product.');
+    }
+}
+
+const checkout = async (req, res) => {
+    try {
+        const ordersFilePath = './Orders/orders.json';
+        const checkoutFolderPath = './Checkouts';
+
+        // Check if the orders file exists
+        if (fs.existsSync(ordersFilePath)) {
+            // Read the orders data from the file
+            const ordersData = JSON.parse(fs.readFileSync(ordersFilePath, 'utf8'));
+
+            // Create a new checkout data structure
+            const checkoutData = {
+                date: new Date(),
+                products: []
+            };
+
+            // Populate the checkout data with products from orders
+            ordersData.forEach(order => {
+                checkoutData.products.push({
+                    productId: order.product_id,
+                    quantity: order.quantity,
+                    price : order.Total_price,
+                    totalPrice: order.Total_price * order.quantity
+
+    
+                });
+            });
+
+            // Create the Checkouts folder if it doesn't exist
+            if (!fs.existsSync(checkoutFolderPath)) {
+                fs.mkdirSync(checkoutFolderPath);
+            }
+
+            // Create a unique filename for the checkout
+            const filename = `checkout_${Date.now()}.json`;
+            const checkoutFilePath = path.join(checkoutFolderPath, filename);
+
+            // Write the checkout data to the checkout file
+            fs.writeFileSync(checkoutFilePath, JSON.stringify(checkoutData, null, 2), 'utf8');
+
+            console.log('Checkout created successfully.');
+            res.status(200).send('Checkout created successfully.');
+        } else {
+            console.error('Orders file does not exist.');
+            res.status(404).send('Orders file does not exist.');
+        }
+    } catch (error) {
+        console.error('Error creating checkout:', error);
+        res.status(500).send('Error creating checkout.');
+    }
+};
+
+module.exports = { createProduct, insertProduct, deleteProduct, getProductById, createOrder, cancelOrder, updateProduct,checkout };
